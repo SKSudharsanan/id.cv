@@ -40,20 +40,9 @@ save it inside src/circom/multiplier2.circom
 
 to compile circom
 ```bash
-circom src/circom/multiplier2.circom --r1cs --wasm --sym --c
-```
-if it compiled successfully, you might get two folders namely multiplier2_cpp and multiplier2_js
-```bash
-cd multiplier2_js
-```
-creating a input file called input.json inside here
-```json
-{"a": "3", "b": "11"}
+circom src/circom/credentialverifier.circom --r1cs --wasm --sym -l node_modules/circomlib/circuits
 ```
 
-```bash
-node generate_witness.js multiplier2.wasm input.json witness.wtns
-```
 ### proving circuits with zk
 We are going to use groth-16 zk-snark protocol to prove this.
 First we start a new "powers of tau" ceremony
@@ -72,14 +61,16 @@ The phase 2 is circuit-specific. Execute the following command to start the gene
 
 ```bash
 snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau -v
-snarkjs groth16 setup multiplier2.r1cs pot12_final.ptau multiplier2_0000.zkey
-snarkjs zkey contribute multiplier2_0000.zkey multiplier2_0001.zkey --name="1st Contributor Name" -v
-snarkjs zkey export verificationkey multiplier2_0001.zkey verification_key.json
+snarkjs groth16 setup credentialverifier.r1cs pot12_final.ptau credentialverifier_0000.zkey
+snarkjs zkey contribute credentialverifier_0000.zkey credentialverifier_0001.zkey --name="1st Contributor Name" -v
+snarkjs zkey export verificationkey credentialverifier_0001.zkey verification_key.json
+node prepareInput.js
 ```
 #### Generating a Proof
 lets try to generate proof
 ```bash
-snarkjs groth16 prove multiplier2_0001.zkey witness.wtns proof.json public.json
+snarkjs groth16 fullprove input.json credentialverifier_js/credentialverifier.wasm credentialverifier_0001.zkey proof.json public.json
+
 ```
 #### Verifying the Proof
 ```bash
@@ -87,7 +78,7 @@ snarkjs groth16 verify verification_key.json public.json proof.json
 ```
 ### Generating the Solidity verifier contract
 ```bash
-snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
+snarkjs zkey export solidityverifier credentialverifier_0001.zkey verifier.sol
 ```
 It will generate the verifier.sol, we can use remix.ethereum.org in order to deploy the contract in solidity. I am using **Ethereum Sepolia** to deploy the contract
 
