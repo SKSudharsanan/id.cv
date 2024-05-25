@@ -6,7 +6,7 @@
 
 
 ## What is Id.cv
-	Id.cv is **Decentralised AI Powered Resume system** along with verifiable credential badges using **ZkSnark**. These resumes can be accessed through the subdomains of id.cv domains. These resumes are generated through AI and we are planning to auto populate the verifiable badges.
+Id.cv is **Decentralised AI Powered Resume system** along with verifiable credential badges using **ZkSnark**. These resumes can be accessed through the subdomains of id.cv domains. These resumes are generated through AI and we are planning to auto populate the verifiable badges.
 
 Our Planned **Tech stack** includes
 
