@@ -21,4 +21,4 @@ We are planning to use three different blockchains for this project for specific
  - **Galadriel** - for AI services
 
 # Planned Architecture
-![ardhitecture](https://github.com/SKSudharsanan/id.cv/assets/131888858/ef844ad6-79d1-4984-9558-3a585975b860)
+![architecture](https://github.com/SKSudharsanan/id.cv/assets/131888858/ef844ad6-79d1-4984-9558-3a585975b860)
