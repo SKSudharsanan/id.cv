@@ -1,0 +1,15 @@
+./zk-verifiable-credentials/circom
+./zk-verifiable-credentials/multipier2_cpp
+./zk-verifiable-credentials/multipier2_js
+./zk-verifiable-credentials/multiplier2_0000.zkey
+./zk-verifiable-credentials/multiplier2_0001.zkey 
+./zk-verifiable-credentials/multiplier2.r1cs 
+./zk-verifiable-credentials/multiplier2.sym
+./zk-verifiable-credentials/pot12_0000.ptau 
+./zk-verifiable-credentials/pot12_0001.ptau 
+./zk-verifiable-credentials/pot12_final.ptau 
+./zk-verifiable-credentials/proof.json 
+./zk-verifiable-credentials/public.json
+./zk-verifiable-credentials/verification_key.json
+./zk-verifiable-credentials/witness.wtns
+././zk-verifiable-credentials/node_modules

@@ -1,0 +1,25 @@
+{
+  "name": "zk-verfiable-credentials",
+  "version": "1.0.0",
+  "description": "verfiable credentials using zksnark with circom and snark.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SKSudharsanan/id.cv/zk-verfiable-credentials"
+  },
+  "keywords": [
+    "zksnark",
+    "circom",
+    "snarkjs",
+    "verifiable"
+  ],
+  "author": "sudharsanan.k",
+  "license": "MIT",
+  "dependencies": {
+    "circomlib": "^2.0.5",
+    "snarkjs": "^0.7.4"
+  }
+}
