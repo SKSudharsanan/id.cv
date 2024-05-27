@@ -1,0 +1,140 @@
+@import "../abstract/mixins.scss";
+@import "../abstract/variables.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+
+  &:before,
+  &:after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+body {
+  font-family: $font-family;
+  font-size: 1em;
+  font-weight: normal;
+  background: $color-white;
+}
+
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button,
+span,
+ul,
+li,
+label,
+input,
+textarea,
+select {
+  margin: 0;
+  font-family: $font-family !important;
+  color: $color-black-01;
+}
+
+ul {
+  li {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:active,
+  &:hover,
+  &:focus {
+    @extend a;
+  }
+}
+
+input,
+select,
+button,
+.btn {
+  &:focus,
+  &:active {
+    box-shadow: none !important;
+    outline: 0 !important;
+  }
+}
+input:focus,
+select:focus {
+  border: 1px solid $color-white !important;
+}
+input::-webkit-input-placeholder {
+  color: $color-grey-04 !important;
+}
+input:-ms-input-placeholder {
+  color: $color-grey-04 !important;
+}
+input::placeholder {
+  color: $color-grey-04 !important;
+}
+input[readonly] {
+  background-color: rgba(0, 25, 132, 0.05);
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.vertical_scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+.dashboard_container {
+  @include flexPosition(flex-start, flex-start);
+  max-width: 1800px;
+  width: 100%;
+  min-height: 100vh;
+
+  &.hide_sidebar {
+    .sidebar_container {
+      display: none;
+    }
+
+    .dashboard_content {
+      width: 100%;
+    }
+  }
+
+  .dashboard_content {
+    position: relative;
+    margin: 0 0 0 auto;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    background: $color-grey-02;
+
+    @include lgScreen {
+      width: 100%;
+    }
+  }
+}

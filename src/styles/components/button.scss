@@ -1,0 +1,112 @@
+.btn {
+  @include flexPosition(center, center);
+  gap: 8px;
+  padding: 13px 20px;
+  padding-bottom: 14px;
+  font-size: 0.95em;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn_primary {
+  @extend .btn;
+  color: $color-white;
+  background-color: $color-primary;
+  border: 1px solid $color-primary;
+
+  &:hover,
+  &:focus {
+    @extend .btn_primary;
+  }
+
+  path {
+    stroke: $color-white;
+    stroke-width: 2;
+  }
+}
+
+.btn_secondary {
+  @extend .btn;
+  color: $color-white;
+  background-color: transparent;
+  border: 1px solid $color-white;
+
+  p {
+    color: $color-white;
+  }
+
+  &:hover,
+  &:focus {
+    @extend .btn_secondary;
+  }
+
+  path {
+    stroke: $color-white;
+    stroke-width: 2;
+  }
+}
+
+.btn_tertiary {
+  @extend .btn;
+  color: $color-black-01;
+  background-color: $color-grey-04;
+  border: 1px solid $color-grey-04;
+
+  p {
+    color: $color-black-01;
+  }
+
+  &:hover,
+  &:focus {
+    @extend .btn_tertiary;
+  }
+
+  path {
+    stroke: $color-black-01;
+    stroke-width: 1.5;
+  }
+}
+
+.btn_none {
+  padding: 0 !important;
+  border: none !important;
+}
+
+.button_component {
+  &.loading {
+    padding: 9px 30px !important;
+    padding-bottom: 10px !important;
+
+    .loader {
+      @include flexPosition(center, center);
+
+      .loader_img_container {
+        margin: 0;
+
+        .loader_img {
+          margin: 0;
+          width: 28px;
+        }
+      }
+
+      p {
+        margin-left: 8px;
+        font-style: italic;
+        color: $color-white;
+      }
+    }
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  svg {
+    @include flexPosition(center, center);
+    margin-bottom: -1px;
+    width: 20px;
+    height: 20px;
+  }
+}

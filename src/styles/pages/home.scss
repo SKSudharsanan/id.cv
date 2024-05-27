@@ -1,0 +1,58 @@
+.home_page_container {
+  width: 100%;
+  min-height: 100vh;
+
+  .hero_section {
+    @include sectionPadding;
+    min-height: 450px;
+    background: linear-gradient($color-gradient-01, $color-gradient-02);
+
+    .navbar {
+      @include flexPosition(space-between, center);
+      padding-top: 24px;
+      padding-bottom: 24px;
+
+      .logo_container img {
+        width: 87px;
+        height: auto;
+      }
+
+      .flex_end {
+        @include flexPosition(flex-end, center);
+
+        .language {
+          @include flexPosition(flex-end, center);
+          gap: 10px;
+          margin-right: 28px;
+          padding-right: 28px;
+          height: 34px;
+          border-right: 2px solid $color-grey-03;
+
+          @include smScreen {
+            display: none;
+          }
+
+          img {
+            @include circle(20px, 20px);
+          }
+
+          p {
+            font-weight: 500;
+            color: $color-white;
+          }
+        }
+
+        a {
+          padding: 9px 28px;
+          padding-bottom: 10px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .hero_content {
+      margin: auto;
+      max-width: 707px;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.top_bar_container {
+  @include sectionPadding;
+  @include flexPosition(space-between, center);
+  gap: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid $color-grey-04;
+
+  .btn {
+    padding: 10px 18px;
+    padding-bottom: 11px;
+  }
+
+  .flex_end {
+    @include flexPosition(space-between, center);
+    gap: 24px;
+
+    @include mmdScreen {
+      gap: 16px;
+    }
+
+    .user {
+      @include flexPosition(space-between, center);
+      gap: 10px;
+
+      img {
+        @include circle(40px, 40px);
+        object-fit: contain;
+        border: 1px solid $color-grey-00;
+      }
+
+      p {
+        font-size: 0.875em;
+        font-weight: 500;
+        color: $color-black-01;
+
+        @include mmdScreen {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.logo_container {
+  @include flexPosition(center, center);
+
+  img {
+    width: 167px;
+    height: auto;
+  }
+}

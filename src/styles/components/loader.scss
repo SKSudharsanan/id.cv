@@ -1,0 +1,31 @@
+.loader_img_container {
+  padding: 100px 0px;
+
+  .loader_img {
+    @include flexPosition(center, center);
+    margin: 0 auto;
+    width: 35px;
+    animation: spin 0.4s ease-in-out infinite;
+    -webkit-animation: spin 0.4s ease-in-out infinite;
+
+    @keyframes spin {
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes spin {
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+  }
+
+  p {
+    margin-top: 18px;
+    font-size: 1em;
+    font-weight: 500;
+    color: $color-black-01;
+    text-align: center;
+    font-style: italic;
+  }
+}

@@ -1,0 +1,29 @@
+import { BrowserRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
+import classNames from "classnames";
+
+import Sidebar from "../components/sidebar";
+
+import UserRoutes from "./routes";
+
+const Dashboard = () => {
+  const { isSidebarOpen } = useSelector((state: any) => state.componentsSlice);
+
+  return (
+    <BrowserRouter>
+      <div
+        className={classNames("dashboard_container", {
+          hide_sidebar: !isSidebarOpen,
+        })}
+      >
+        <Sidebar />
+
+        <div className="dashboard_content">
+          <UserRoutes />
+        </div>
+      </div>
+    </BrowserRouter>
+  );
+};
+
+export default Dashboard;
