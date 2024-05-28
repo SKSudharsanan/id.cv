@@ -153,6 +153,17 @@ const HomePage = () => {
             <Link to="/">Privacy Policy</Link>
             <Link to="/">Terms of Service</Link>
           </div>
+
+          <div className="animated_text">
+            <p>
+              All your data are belong to you 🖤 <span>✦</span> All your data
+              are belong to you 🖤 <span>✦</span> All your data are belong to
+              you 🖤 <span>✦</span> All your data are belong to you 🖤{" "}
+              <span>✦</span> All your data are belong to you 🖤 <span>✦</span>{" "}
+              All your data are belong to you 🖤 <span>✦</span> All your data
+              are belong to you 🖤 <span>✦</span>
+            </p>
+          </div>
         </div>
       </div>
     </React.Fragment>

@@ -110,6 +110,33 @@ input[readonly] {
   }
 }
 
+.animated_text {
+  padding: 20px 0;
+  background: linear-gradient($color-gradient-01, $color-gradient-02);
+  width: 140%;
+
+  transition-duration: 1s;
+
+  p {
+    @include verticalScrollTransition;
+    font-size: 2em;
+    font-weight: 400;
+    color: $color-white;
+    line-height: 100%;
+    letter-spacing: -3px;
+    white-space: nowrap;
+
+    @include mmdScreen {
+      font-size: 1.7em;
+    }
+
+    span {
+      margin: 0 18px;
+      color: $color-white;
+    }
+  }
+}
+
 .dashboard_container {
   @include flexPosition(flex-start, flex-start);
   max-width: 1800px;

@@ -62,6 +62,22 @@
   gap: $gap;
 }
 
+@mixin verticalScrollTransition {
+  animation: verticalScroll 8s ease-in-out infinite;
+  -webkit-animation: verticalScroll 8s ease-in-out infinite;
+}
+@keyframes verticalScroll {
+  0% {
+    margin-left: 5%;
+  }
+  50% {
+    margin-left: -37%;
+  }
+  100% {
+    margin-left: 5%;
+  }
+}
+
 // Responsiveness
 
 @mixin xxlScreen() {

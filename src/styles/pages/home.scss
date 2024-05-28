@@ -208,13 +208,11 @@
     @include sectionPadding;
     @include gridColumns(2fr 1fr 1fr 1fr 1fr, 24px);
     row-gap: 28px !important;
+    position: relative;
     padding-top: 60px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     background: $color-primary;
-    background-image: url("../../assets/svg/belongs-to-youu.svg");
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-size: contain;
+    overflow: hidden;
 
     @include lgScreen {
       @include gridColumns(2fr 1fr 1fr, 24px);
@@ -222,7 +220,7 @@
 
     @include mmdScreen {
       @include gridColumns(2fr 1fr, 24px);
-      padding-bottom: 48px;
+      padding-bottom: 100px;
     }
 
     @include smScreen {
@@ -269,6 +267,18 @@
         font-weight: 400;
         color: $color-white;
         width: fit-content;
+      }
+    }
+
+    .animated_text {
+      position: absolute;
+      right: -20%;
+      bottom: 10%;
+      transform: rotate(-5deg);
+
+      @include lgScreen {
+        bottom: 2%;
+        transform: rotate(-8deg);
       }
     }
   }
