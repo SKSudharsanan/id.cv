@@ -7,14 +7,19 @@ import { Document } from "./document";
 import { Edit } from "./edit";
 import { Email } from "./email";
 import { ErrorCircle } from "./error-circle";
+import { Facebook } from "./facebook";
 import { Help } from "./help";
 import { History } from "./history";
 import { Identification } from "./identification";
+import { Instagram } from "./instagram";
+import { LinkedIn } from "./linkedin";
 import { Name } from "./name";
 import { Notification } from "./notification";
 import { Occupation } from "./occupation";
 import { Request } from "./request";
 import { Search } from "./search";
+import { Settings } from "./settings";
+import { Twitter } from "./twitter";
 import { Uploaded } from "./uploaded";
 import { User } from "./user";
 import { Verified } from "./verified";
@@ -39,12 +44,18 @@ const Icon = ({ name }: { name: string }) => {
       return <Email />;
     case "errorCircle":
       return <ErrorCircle />;
+    case "facebook":
+      return <Facebook />;
     case "help":
       return <Help />;
     case "history":
       return <History />;
     case "identification":
       return <Identification />;
+    case "instagram":
+      return <Instagram />;
+    case "linkedin":
+      return <LinkedIn />;
     case "name":
       return <Name />;
     case "notification":
@@ -55,6 +66,10 @@ const Icon = ({ name }: { name: string }) => {
       return <Request />;
     case "search":
       return <Search />;
+    case "settings":
+      return <Settings />;
+    case "twitter":
+      return <Twitter />;
     case "uploaded":
       return <Uploaded />;
     case "user":

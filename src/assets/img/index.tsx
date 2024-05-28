@@ -3,7 +3,7 @@ import ethereum from "./ethereum.png";
 import filecoin from "./filecoin.png";
 import fleek from "./fleek.png";
 import galadriel from "./galadriel.png";
-import secure from "./ens.png";
+import secure from "./secure.png";
 import udemy from "./udemy.png";
 import uk from "./uk.png";
 

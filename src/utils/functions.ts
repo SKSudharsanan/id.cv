@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 import { APP_USER } from "./constants";
 
 // Storage operations
@@ -45,4 +46,26 @@ export const getRequestError = (error: any) => {
     return response.data.error;
   }
   return "There might be a problem with your internet connection. Please check and try again.";
+};
+
+export const socialOnClick = (social: { name: string; handle: string }) => {
+  switch(social.name) {
+    case "whatsapp":
+      window.open(`https://api.whatsapp.com/send?phone=${social.handle}&text=Hello! I'm a website visitor.`);
+      break
+    case "twitter":
+      window.open(`https://x.com/${social.handle}`);
+      break
+    case "instagram":
+      window.open(`https://www.instagram.com/${social.handle}`);
+      break
+    case "facebook":
+      window.open(`https://facebook.com/${social.handle}`);
+      break
+    case "tiktok":
+      window.open(`https://www.tiktok.com/${social.handle}`);
+      break
+    default:
+      return;
+  }
 };
