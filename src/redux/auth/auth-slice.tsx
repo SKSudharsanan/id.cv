@@ -7,6 +7,7 @@ import {
   useStorage,
   getUserDetails,
   getRequestError,
+  logoutUser,
 } from "../../utils/functions";
 import { APP_USER } from "../../utils/constants";
 import { dummyUserData } from "../../utils/mockdata";
@@ -32,12 +33,30 @@ const slice = createSlice({
       state.user = payload;
       useStorage.set(APP_USER, payload);
     },
+    logoutSuccess: (state) => {
+      state.user = null;
+      logoutUser();
+    },
   },
 });
 export default slice.reducer;
 
 // Actions
-const { setIsFetchingAuthDetails, setUserDetails } = slice.actions;
+const { setIsFetchingAuthDetails, setUserDetails, logoutSuccess } =
+  slice.actions;
+
+export const createUserAction = (data: any) => async (dispatch: any) => {
+  try {
+    setTimeout(() => {
+      dispatch(setUserDetails(dummyUserData));
+    }, 2000);
+
+    return { success: true };
+  } catch (err) {
+    const errorMessage = getRequestError(err);
+    dispatch(setAlert(true, "error", errorMessage));
+  }
+};
 
 export const getUserDataAction = (data: any) => async (dispatch: any) => {
   try {
@@ -60,4 +79,16 @@ export const getUserDataAction = (data: any) => async (dispatch: any) => {
   }
 };
 
-export const logoutUserAction = () => async (dispatch: any) => {};
+export const logoutUserAction = () => async (dispatch: any) => {
+  try {
+    // await getRequest({
+    //   url: API_URLS?.logoutUser,
+    //   params: null,
+    // });
+
+    dispatch(logoutSuccess());
+  } catch (error) {
+    const message = getRequestError(error);
+    console.log(message);
+  }
+};

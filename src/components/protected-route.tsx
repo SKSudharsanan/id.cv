@@ -9,7 +9,7 @@ export const ProtectedRoute: React.FunctionComponent<Props> = ({
   component: Component,
   ...rest
 }) => {
-  const { user } = useSelector((state: any) => state.userSlice);
+  const { user } = useSelector((state: any) => state.authSlice);
 
   return (
     <Route

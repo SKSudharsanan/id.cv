@@ -115,10 +115,9 @@ input[readonly] {
   background: linear-gradient($color-gradient-01, $color-gradient-02);
   width: 140%;
 
-  transition-duration: 1s;
-
   p {
     @include verticalScrollTransition;
+    @include flexPosition(center, center);
     font-size: 2em;
     font-weight: 400;
     color: $color-white;
@@ -132,6 +131,7 @@ input[readonly] {
 
     span {
       margin: 0 18px;
+      font-size: 0.5em;
       color: $color-white;
     }
   }

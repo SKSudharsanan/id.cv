@@ -5,6 +5,7 @@ import classNames from "classnames";
 import Sidebar from "../components/sidebar";
 
 import UserRoutes from "./routes";
+import TopBar from "../components/top-bar";
 
 const Dashboard = () => {
   const { isSidebarOpen } = useSelector((state: any) => state.componentsSlice);
@@ -19,6 +20,7 @@ const Dashboard = () => {
         <Sidebar />
 
         <div className="dashboard_content">
+          <TopBar />
           <UserRoutes />
         </div>
       </div>

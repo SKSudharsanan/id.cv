@@ -8,6 +8,7 @@ import Alert from "./components/alert";
 import Dashboard from "./dashboard";
 
 import HomePage from "./pages/index";
+import RegisterPage from "./pages/register";
 
 const App = () => {
   const { alert } = useSelector((state: any) => state.componentsSlice);
@@ -17,6 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/register" component={RegisterPage} />
 
           <ProtectedRoute component={Dashboard} />
         </Switch>

@@ -44,6 +44,8 @@ const FormInput = ({
     <div className="form_group_container">
       {!checkBoxInputTypes.includes(type) ? (
         <div className="form-group">
+          {label && <label className="form-check-label">{label}</label>}
+
           <div className={classNames("flex_input", { error: errorMessage })}>
             {leftIcon && (
               <div className="icon left_icon">

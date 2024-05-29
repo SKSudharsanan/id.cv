@@ -1,33 +1,20 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useAppDispatch } from "../redux";
 
-import Button from "./button";
+import { logoutUserAction } from "../redux/auth/auth-slice";
+
+import Icon from "../assets/svg";
 
 const TopBar = () => {
-  const { user, store } = useSelector((state: any) => state.authSlice);
+  const dispatch = useAppDispatch();
 
-  const mainAppUrl = "https://app.getidcv.com/dashboard";
-  const storefrontUrl = store?.website_url;
+  // const { user } = useSelector((state: any) => state.authSlice);
 
   return (
     <div className="top_bar_container">
-      <Button
-        leftIcon="arrowBack"
-        text="Back to App"
-        className="btn_tertiary"
-        onClick={() => window.location.assign(mainAppUrl)}
-      />
-
-      <div className="flex_end">
-        <Button
-          text="View Store"
-          className="btn_secondary"
-          onClick={() => window.open(storefrontUrl)}
-        />
-
-        <div className="user">
-          <img src={store?.logo} alt="Store logo" />
-          <p>{`${user?.first_name} ${user?.last_name}`}</p>
-        </div>
+      <div className="logout" onClick={() => dispatch(logoutUserAction())}>
+        <Icon name="logout" />
+        <p>Logout</p>
       </div>
     </div>
   );

@@ -32,6 +32,11 @@ export const getUserDetails = () => {
   return user ? user : null;
 };
 
+export const logoutUser = () => {
+  useStorage.remove(APP_USER);
+  window.location.reload();
+};
+
 export const getRequestError = (error: any) => {
   const { response } = error;
   if (response && (response.data.code === 401 || response.status === 401)) {

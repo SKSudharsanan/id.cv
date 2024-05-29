@@ -1,10 +1,8 @@
 .loader_img_container {
-  padding: 100px 0px;
-
-  .loader_img {
-    @include flexPosition(center, center);
-    margin: 0 auto;
+  svg {
     width: 35px;
+    height: 35px;
+    color: $color-white;
     animation: spin 0.4s ease-in-out infinite;
     -webkit-animation: spin 0.4s ease-in-out infinite;
 

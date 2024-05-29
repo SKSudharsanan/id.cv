@@ -13,6 +13,8 @@ import { History } from "./history";
 import { Identification } from "./identification";
 import { Instagram } from "./instagram";
 import { LinkedIn } from "./linkedin";
+import { Loader } from "./loader";
+import { Logout } from "./logout";
 import { Name } from "./name";
 import { Notification } from "./notification";
 import { Occupation } from "./occupation";
@@ -56,6 +58,10 @@ const Icon = ({ name }: { name: string }) => {
       return <Instagram />;
     case "linkedin":
       return <LinkedIn />;
+    case "loader":
+      return <Loader />;
+    case "logout":
+      return <Logout />;
     case "name":
       return <Name />;
     case "notification":

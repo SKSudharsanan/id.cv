@@ -1,9 +1,9 @@
-import loader from "../assets/svg/loader.svg";
+import Icon from "../assets/svg";
 
 const Loader = ({ text }: { text?: string }) => {
   return (
     <div className="loader_img_container">
-      <img src={loader} className="loader_img" alt="Loader img" />
+      <Icon name="loader" />
       {text && <p>{text}</p>}
     </div>
   );
