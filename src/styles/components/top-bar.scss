@@ -4,40 +4,24 @@
   gap: 16px;
   padding-top: 13px;
   padding-bottom: 13px;
-  border-bottom: 1px solid $color-grey-04;
+  background: $color-white;
+  border-bottom: 1px solid $color-grey-00;
 
-  .btn {
-    padding: 10px 18px;
-    padding-bottom: 11px;
-  }
+  .logout {
+    @include flexPosition(flex-end, center);
+    gap: 10px;
+    width: fit-content;
+    cursor: pointer;
 
-  .flex_end {
-    @include flexPosition(space-between, center);
-    gap: 24px;
-
-    @include mmdScreen {
-      gap: 16px;
+    .icon {
+      @include flexPosition(flex-end, center);
+      @include circle(36px, 36px);
+      padding: 7px;
+      background: $color-grey-02;
     }
 
-    .user {
-      @include flexPosition(space-between, center);
-      gap: 10px;
-
-      img {
-        @include circle(40px, 40px);
-        object-fit: contain;
-        border: 1px solid $color-grey-00;
-      }
-
-      p {
-        font-size: 0.875em;
-        font-weight: 500;
-        color: $color-black-01;
-
-        @include mmdScreen {
-          display: none;
-        }
-      }
+    p {
+      font-weight: 500;
     }
   }
 }

@@ -3,15 +3,17 @@ import React, { useEffect } from "react";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../redux";
+import { useAccount } from "wagmi";
 
-// import Logo from "./logo";
+import Logo from "./logo";
 
 import { toggleSidebarAction } from "../redux/components/components-slice";
 
-// import Icon from "../assets/svg";
+import Icon from "../assets/svg";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
+  const account = useAccount();
 
   const { isSidebarOpen } = useSelector((state: any) => state.componentsSlice);
 
@@ -34,7 +36,22 @@ const Sidebar = () => {
         sidebar_open: isSidebarOpen,
       })}
     >
-      <div className="sidebar_container_inner"></div>
+      <Logo colored />
+
+      <div className="sidebar_container_inner">
+        <div className="user">
+          <div className="info">
+            <div className="icon">
+              <Icon name="user" />
+            </div>
+            <p>{account.address}</p>
+          </div>
+
+          <div className="chevron">
+            <Icon name="chevronRight" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

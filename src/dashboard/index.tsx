@@ -21,7 +21,10 @@ const Dashboard = () => {
 
         <div className="dashboard_content">
           <TopBar />
-          <UserRoutes />
+
+          <div className="page_container">
+            <UserRoutes />
+          </div>
         </div>
       </div>
     </BrowserRouter>

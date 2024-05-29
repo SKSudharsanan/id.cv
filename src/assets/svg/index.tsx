@@ -1,6 +1,7 @@
 import { Arrow } from "./arrow";
 import { Cart } from "./cart";
 import { Certification } from "./certification";
+import { ChevronRight } from "./chevron-right";
 import { Close } from "./close";
 import { Data } from "./data";
 import { Document } from "./document";
@@ -34,6 +35,8 @@ const Icon = ({ name }: { name: string }) => {
       return <Cart />;
     case "certification":
       return <Certification />;
+    case "chevronRight":
+      return <ChevronRight />;
     case "close":
       return <Close />;
     case "data":

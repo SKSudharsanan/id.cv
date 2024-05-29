@@ -1,36 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
+import { useAccount } from "wagmi";
 import { useAppDispatch } from "../redux";
+
+import { loginUserAction } from "../redux/auth/auth-slice";
 
 import FormInput from "../components/form-input";
 import Button from "../components/button";
-
-import { createUserAction } from "../redux/auth/auth-slice";
 
 import Icon from "../assets/svg";
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const account = useAccount();
+  const { open } = useWeb3Modal();
 
   const { user } = useSelector((state: any) => state.authSlice);
 
   const [domain, setDomain] = useState("sfolayan.id.cv");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitForm = async () => {
-    setIsSubmitting(true);
+  useEffect(() => {
+    if (account?.isConnected) {
+      dispatch(loginUserAction(account.address));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account]);
 
-    const payload = { domain };
-
-    setTimeout(() => {
-      dispatch(createUserAction(payload));
-      // setIsSubmitting(false);
-    }, 1000);
-  };
-
-  if (user?.id) return <>{history.push("/my-data")}</>;
+  if (user) {
+    return <>{history.push("/my-data")}</>;
+  }
 
   return (
     <div className="register_page_container">
@@ -62,7 +63,7 @@ const RegisterPage = () => {
             placeholder="sfolayan.id.cv"
             value={domain}
             onChange={(e) => setDomain(e?.target?.value)}
-            readOnly={isSubmitting}
+            readOnly={account?.isConnecting}
           />
 
           <div className="domain_preview">
@@ -78,9 +79,9 @@ const RegisterPage = () => {
 
           <Button
             text="Connect Wallet"
-            onClick={submitForm}
+            onClick={() => open()}
             disabled={!domain}
-            loading={isSubmitting}
+            loading={account?.isConnecting}
           />
         </div>
 

@@ -156,12 +156,16 @@ input[readonly] {
   .dashboard_content {
     position: relative;
     margin: 0 0 0 auto;
-    width: calc(100% - 250px);
+    width: calc(100% - $sidebar-width);
     min-height: 100vh;
     background: $color-grey-02;
 
     @include lgScreen {
       width: 100%;
+    }
+
+    .page_container {
+      padding: 0 0 0 12px;
     }
   }
 }
