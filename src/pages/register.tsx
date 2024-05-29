@@ -16,7 +16,7 @@ const RegisterPage = () => {
 
   const { user } = useSelector((state: any) => state.authSlice);
 
-  const [domain, setDomain] = useState("");
+  const [domain, setDomain] = useState("sfolayan.id.cv");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitForm = async () => {
@@ -60,6 +60,7 @@ const RegisterPage = () => {
             label="Choose your id.cv name"
             type="text"
             placeholder="sfolayan.id.cv"
+            value={domain}
             onChange={(e) => setDomain(e?.target?.value)}
             readOnly={isSubmitting}
           />
@@ -70,7 +71,7 @@ const RegisterPage = () => {
             </div>
 
             <div className="info">
-              <h6>Domain: sfolayan.id.cv</h6>
+              <h6>Domain: {domain}</h6>
               <p>Price: Free</p>
             </div>
           </div>
