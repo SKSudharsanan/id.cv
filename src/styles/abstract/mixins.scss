@@ -63,18 +63,15 @@
 }
 
 @mixin verticalScrollTransition {
-  animation: verticalScroll 8s ease-in-out infinite;
-  -webkit-animation: verticalScroll 8s ease-in-out infinite;
+  animation: verticalScroll 6s linear infinite;
+  -webkit-animation: verticalScroll 6s linear infinite;
 }
 @keyframes verticalScroll {
   0% {
-    margin-left: 5%;
-  }
-  50% {
-    margin-left: -37%;
+    margin-left: 0%;
   }
   100% {
-    margin-left: 5%;
+    margin-left: -135%;
   }
 }
 
