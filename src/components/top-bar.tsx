@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../redux";
 import { useAccount, useDisconnect } from "wagmi";
 
+import Logo from "./logo";
+
+import { toggleSidebarAction } from "../redux/components/components-slice";
 import { logoutUserAction } from "../redux/auth/auth-slice";
 
 import Icon from "../assets/svg";
@@ -22,6 +25,12 @@ const TopBar = () => {
 
   return (
     <div className="top_bar_container">
+      <div className="menu" onClick={() => dispatch(toggleSidebarAction(true))}>
+        <Icon name="menu" />
+      </div>
+
+      <Logo colored />
+
       <div className="search_container"></div>
 
       <div className="logout" onClick={() => disconnect()}>

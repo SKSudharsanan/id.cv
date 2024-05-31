@@ -38,12 +38,32 @@
       }
     }
 
+    .close_menu {
+      display: none;
+
+      @include lgScreen {
+        @include flexPosition(center, center);
+        margin: 20px 12px 0 auto;
+        width: fit-content;
+        cursor: pointer;
+
+        svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+
     .logo_container {
-      padding: 13px 12px;
+      padding: 18px 12px;
       width: fit-content;
 
+      @include lgScreen {
+        display: none;
+      }
+
       img {
-        width: 86px;
+        width: 100px;
         height: auto;
       }
     }
@@ -93,6 +113,58 @@
             path {
               color: $color-grey-04;
             }
+          }
+        }
+      }
+
+      .links {
+        margin-top: 32px;
+
+        .link {
+          @include flexPosition(flex-start, center);
+          gap: 8px;
+          margin-bottom: 24px;
+
+          &:last-child {
+            margin: 0;
+          }
+
+          &.active {
+            .icon {
+              background: linear-gradient(
+                $color-gradient-01,
+                $color-gradient-02
+              );
+
+              svg {
+                color: $color-white;
+              }
+            }
+
+            p {
+              font-weight: 600;
+              background: linear-gradient(
+                $color-gradient-01,
+                $color-gradient-02
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+          }
+
+          .icon {
+            @include flexPosition(center, center);
+            @include circle(44px, 36px);
+            padding: 7px;
+            background: $color-grey-02;
+          }
+
+          p {
+            @include ellipsis;
+            font-weight: 500;
+            width: 100%;
+            color: $color-black-01;
+            letter-spacing: 0.3px;
           }
         }
       }

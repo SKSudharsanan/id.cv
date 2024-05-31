@@ -74,3 +74,9 @@ export const socialOnClick = (social: { name: string; handle: string }) => {
       return;
   }
 };
+
+export const firstLetter = (letter: string) => {
+  var str = letter;
+  var res = str?.substring(0, 1);
+  return res;
+};

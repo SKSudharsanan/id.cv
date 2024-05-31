@@ -13,21 +13,21 @@ type NavRouteProps = {
   component?: () => JSX.Element;
 }[];
 
-const navRoutes: NavRouteProps = [
+export const navRoutes: NavRouteProps = [
   {
-    icon: "myData",
+    icon: "data",
     label: "My Data",
     to: "/my-data",
     component: MyDataPage,
   },
   {
-    icon: "notifications",
+    icon: "notification",
     label: "Notifications",
     to: "/notifications",
     component: dummyPage,
   },
   {
-    icon: "requests",
+    icon: "request",
     label: "Requests",
     to: "/requests",
     component: dummyPage,

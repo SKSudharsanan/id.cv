@@ -166,6 +166,10 @@ input[readonly] {
 
     .page_container {
       padding: 0 0 0 12px;
+
+      @include lgScreen {
+        padding: 0;
+      }
     }
   }
 }

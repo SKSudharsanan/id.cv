@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
-// import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../redux";
 import { useAccount } from "wagmi";
 
 import Logo from "./logo";
+
+import { navRoutes } from "../dashboard/routes";
 
 import { toggleSidebarAction } from "../redux/components/components-slice";
 
@@ -36,6 +38,13 @@ const Sidebar = () => {
         sidebar_open: isSidebarOpen,
       })}
     >
+      <div
+        className="close_menu"
+        onClick={() => dispatch(toggleSidebarAction(false))}
+      >
+        <Icon name="close" />
+      </div>
+
       <Logo colored />
 
       <div className="sidebar_container_inner">
@@ -50,6 +59,18 @@ const Sidebar = () => {
           <div className="chevron">
             <Icon name="chevronRight" />
           </div>
+        </div>
+
+        <div className="links">
+          {navRoutes?.map((item, i) => (
+            <NavLink to={item.to || ""} key={i} className="link">
+              <div className="icon">
+                <Icon name={item.icon} />
+              </div>
+
+              <p>{item.label}</p>
+            </NavLink>
+          ))}
         </div>
       </div>
     </div>

@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 import Sidebar from "../components/sidebar";
+import TopBar from "../components/top-bar";
 
 import UserRoutes from "./routes";
-import TopBar from "../components/top-bar";
 
 const Dashboard = () => {
   const { isSidebarOpen } = useSelector((state: any) => state.componentsSlice);

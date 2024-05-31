@@ -16,6 +16,7 @@ import { Instagram } from "./instagram";
 import { LinkedIn } from "./linkedin";
 import { Loader } from "./loader";
 import { Logout } from "./logout";
+import { Menu } from "./menu";
 import { Name } from "./name";
 import { Notification } from "./notification";
 import { Occupation } from "./occupation";
@@ -65,6 +66,8 @@ const Icon = ({ name }: { name: string }) => {
       return <Loader />;
     case "logout":
       return <Logout />;
+    case "menu":
+      return <Menu />;
     case "name":
       return <Name />;
     case "notification":
