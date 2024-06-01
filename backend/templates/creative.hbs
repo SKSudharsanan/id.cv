@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - {{basics.name}}</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #e9ecef;
+            color: #343a40;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #495057;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.75em;
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 40px;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{basics.name}}</h1>
+            <p>{{basics.label}}</p>
+            <div class="contact-info">
+                <p>Email: {{basics.email}}</p>
+                <p>Location: {{basics.location.city}}, {{basics.location.countryCode}}</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            {{#each work}}
+            <h3>{{company}}</h3>
+            <p><strong>{{position}}</strong> ({{startDate}} - {{endDate}})</p>
+            <p>{{summary}}</p>
+            <ul>
+                {{#each highlights}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            {{#each education}}
+            <h3>{{institution}}</h3>
+            <p><strong>{{studyType}}</strong> in {{area}} ({{startDate}} - {{endDate}})</p>
+            <p>GPA: {{gpa}}</p>
+            {{/each}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Skills</h2>
+            </div>
+            {{#each skills}}
+            <h3>{{name}}</h3>
+            <ul>
+                {{#each keywords}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            {{#each projects}}
+            <h3>{{name}}</h3>
+            <p>{{description}}</p>
+            <p>{{startDate}}</p>
+            <ul>
+                {{#each highlights}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+    </div>
+</body>
+</html>

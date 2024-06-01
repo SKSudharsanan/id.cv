@@ -13,3 +13,8 @@
 /zk-verifiable-credentials/verification_key.json
 /zk-verifiable-credentials/witness.wtns
 /zk-verifiable-credentials/node_modules
+/backend/.env
+/backend/image.png
+/backend/package-lock.json
+/backend/resume.html
+/backend/node_modules

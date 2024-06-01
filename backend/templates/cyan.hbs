@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - {{basics.name}}</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #00bcd4;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #008ba3;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2, h3 {
+            color: #fff;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            background-color: #004d63;
+            color: #00bcd4;
+            padding: 10px;
+            border-left: 5px solid #00bcd4;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{basics.name}}</h1>
+            <p>{{basics.label}}</p>
+            <div class="contact-info">
+                <p>Email: {{basics.email}}</p>
+                <p>Location: {{basics.location.city}}, {{basics.location.countryCode}}</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            {{#each work}}
+            <h3>{{company}}</h3>
+            <p><strong>{{position}}</strong> ({{startDate}} - {{endDate}})</p>
+            <p>{{summary}}</p>
+            <ul>
+                {{#each highlights}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            {{#each education}}
+            <h3>{{institution}}</h3>
+            <p><strong>{{studyType}}</strong> in {{area}} ({{startDate}} - {{endDate}})</p>
+            <p>GPA: {{gpa}}</p>
+            {{/each}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Skills</h2>
+            </div>
+            {{#each skills}}
+            <h3>{{name}}</h3>
+            <ul>
+                {{#each keywords}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            {{#each projects}}
+            <h3>{{name}}</h3>
+            <p>{{description}}</p>
+            <p>{{startDate}}</p>
+            <ul>
+                {{#each highlights}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+    </div>
+</body>
+</html>

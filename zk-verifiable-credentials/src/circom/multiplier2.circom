@@ -1,17 +1,26 @@
-//This file is to check whether I could able to compile circom circuits
 pragma circom 2.0.0;
 
-/*This circuit template checks that c is the multiplication of a and b.*/  
+include "poseidon.circom";
 
-template Multiplier2 () {  
+template multipier2() {
+    // Public inputs
+    signal input credentialHash;
+    signal input expirationDate;
+    signal input currentDate;
 
-   // Declaration of signals.  
-   signal input a;  
-   signal input b;  
-   signal output c;  
+    // Private inputs
+    signal input credentialData;
 
-   // Constraints.  
-   c <== a * b;  
+    // Poseidon hash function for credential data
+    signal credentialHashCalculated;
+    credentialHashCalculated <== Poseidon([credentialData]);
+
+    // Constraints
+    // Verify the credential hash
+   //  credentialHash === credentialHashCalculated;
+
+    // Verify the credential has not expired
+   //  currentDate < expirationDate;
 }
 
-component main = Multiplier2();
+component main = multipier2();
