@@ -59,6 +59,50 @@
       }
     }
 
+    .pdf_to_img_uploader {
+      margin: 60px auto;
+      max-width: 360px;
+
+      .dropzone {
+        margin: auto;
+        padding: 32px 12px;
+        max-width: 360px;
+        background: $color-grey-01;
+        border: 2px dashed $color-grey-02;
+        border-radius: 12px;
+        cursor: pointer;
+
+        p {
+          font-size: 0.85em;
+          font-weight: 500;
+          text-align: center;
+          color: $color-black-01;
+        }
+
+        .btn {
+          margin: auto;
+          margin-top: 16px;
+          padding: 10px 20px;
+          padding-bottom: 11px;
+          color: $color-primary;
+          width: fit-content;
+          background: $color-grey-02;
+          border-radius: 199px;
+        }
+      }
+
+      .actions {
+        @include flexPosition(space-between, center);
+        gap: 24px;
+        margin-top: 24px;
+
+        .btn .loader_img_container svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+
     .navigation {
       margin-top: 48px;
 

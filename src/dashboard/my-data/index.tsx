@@ -11,6 +11,7 @@ import Certificates from "./certificates";
 import Identification from "./identification";
 
 import Icon from "../../assets/svg";
+import PdfToImagesUploader from "./update";
 
 const navigations = [
   { key: "name", label: "Official Name" },
@@ -22,6 +23,17 @@ const navigations = [
 
 const MyDataPage = () => {
   const [activeNav, setActiveNav] = useState(navigations[0].label);
+  const [showUpdateResume, setShowUpdateResume] = useState(false);
+
+  const toggleUpdateResume = () => {
+    setActiveNav("");
+    setShowUpdateResume(!showUpdateResume);
+  };
+
+  const closeUpdateResume = () => {
+    setActiveNav(navigations[0].label);
+    setShowUpdateResume(false);
+  };
 
   return (
     <React.Fragment>
@@ -36,32 +48,36 @@ const MyDataPage = () => {
             </div>
 
             <div className="actions">
-              <Button text="Update" onClick={() => {}} />
+              <Button text="Update" onClick={toggleUpdateResume} />
               <Button text="Download JSON" onClick={() => {}} />
             </div>
           </div>
 
-          <div className="navigation">
-            <p className="title">Quick Search</p>
+          {showUpdateResume ? (
+            <PdfToImagesUploader close={closeUpdateResume} />
+          ) : (
+            <div className="navigation">
+              <p className="title">Quick Search</p>
 
-            <div className="navs vertical_scroll">
-              {navigations.map((item, i) => (
-                <div
-                  key={i}
-                  className={classNames("item", {
-                    active: activeNav === item.label,
-                  })}
-                  onClick={() => setActiveNav(item.label)}
-                >
-                  <div className="icon">
-                    <Icon name={item.key} />
+              <div className="navs vertical_scroll">
+                {navigations.map((item, i) => (
+                  <div
+                    key={i}
+                    className={classNames("item", {
+                      active: activeNav === item.label,
+                    })}
+                    onClick={() => setActiveNav(item.label)}
+                  >
+                    <div className="icon">
+                      <Icon name={item.key} />
+                    </div>
+
+                    <p>{item.label}</p>
                   </div>
-
-                  <p>{item.label}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <hr />

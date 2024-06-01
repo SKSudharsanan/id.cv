@@ -28,12 +28,12 @@
 
 .btn_secondary {
   @extend .btn;
-  color: $color-white;
+  color: $color-primary;
   background-color: transparent;
-  border: 1px solid $color-white;
+  border: 1px solid $color-primary;
 
   p {
-    color: $color-white;
+    color: $color-primary;
   }
 
   &:hover,
@@ -42,7 +42,7 @@
   }
 
   path {
-    stroke: $color-white;
+    stroke: $color-primary;
     stroke-width: 2;
   }
 }
