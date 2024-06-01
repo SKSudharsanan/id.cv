@@ -27,7 +27,7 @@ const MyDataPage = () => {
 
   const toggleUpdateResume = () => {
     setActiveNav("");
-    setShowUpdateResume(!showUpdateResume);
+    setShowUpdateResume(true);
   };
 
   const closeUpdateResume = () => {
