@@ -2,218 +2,55 @@ export const APP_NAME = "ID.CV | Next-gen resumes: private, owner-controlled, de
 
 export const APP_USER = "idcv_app_user";
 
+export const APP_MY_DATA = "idcv_app_my_data";
+
 export const APP_CONTRACT_ABI = [
 	{
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "label",
+				"name": "message",
 				"type": "string"
 			},
 			{
-				"internalType": "uint64",
-				"name": "expiry",
-				"type": "uint64"
+				"internalType": "uint256",
+				"name": "runId",
+				"type": "uint256"
 			}
 		],
-		"name": "extendExpiry",
+		"name": "addMessage",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "InitialOwner",
+				"name": "initialOracleAddress",
 				"type": "address"
-			},
-			{
-				"internalType": "contract INameWrapper",
-				"name": "_wrapper",
-				"type": "address"
-			},
-			{
-				"internalType": "contract ITableland",
-				"name": "_tableland",
-				"type": "address"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_parentNode",
-				"type": "bytes32"
 			}
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
 				"internalType": "address",
 				"name": "owner",
 				"type": "address"
-			}
-		],
-		"name": "OwnableInvalidOwner",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "OwnableUnauthorizedAccount",
-		"type": "error"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "previousOwner",
-				"type": "address"
 			},
 			{
 				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes32",
-				"name": "label",
-				"type": "bytes32"
-			},
-			{
-				"indexed": false,
 				"internalType": "uint256",
-				"name": "registrationFee",
+				"name": "chatId",
 				"type": "uint256"
 			}
 		],
-		"name": "PremiumFeesUpdated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes32",
-				"name": "label",
-				"type": "bytes32"
-			},
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "isPremium",
-				"type": "bool"
-			}
-		],
-		"name": "PremiumNameUpdated",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "label",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "resolver",
-				"type": "address"
-			},
-			{
-				"internalType": "uint64",
-				"name": "expiry",
-				"type": "uint64"
-			},
-			{
-				"internalType": "string",
-				"name": "resumeData",
-				"type": "string"
-			}
-		],
-		"name": "register",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "_parentNode",
-				"type": "bytes32"
-			}
-		],
-		"name": "setParentNode",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "subname",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "registrationFee",
-				"type": "uint256"
-			}
-		],
-		"name": "setPremiumFees",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes32",
-				"name": "label",
-				"type": "bytes32"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "expiryTime",
-				"type": "uint256"
-			}
-		],
-		"name": "SubnameExpiryExtended",
+		"name": "ChatCreated",
 		"type": "event"
 	},
 	{
@@ -227,18 +64,12 @@ export const APP_CONTRACT_ABI = [
 			},
 			{
 				"indexed": true,
-				"internalType": "bytes32",
-				"name": "label",
-				"type": "bytes32"
-			},
-			{
-				"indexed": false,
 				"internalType": "uint256",
-				"name": "expiryTime",
+				"name": "chatId",
 				"type": "uint256"
 			}
 		],
-		"name": "SubnameRegistered",
+		"name": "ChatResponseErrored",
 		"type": "event"
 	},
 	{
@@ -252,23 +83,116 @@ export const APP_CONTRACT_ABI = [
 			},
 			{
 				"indexed": true,
-				"internalType": "bytes32",
-				"name": "label",
-				"type": "bytes32"
+				"internalType": "uint256",
+				"name": "chatId",
+				"type": "uint256"
 			}
 		],
-		"name": "SubnameUpdated",
+		"name": "ChatResponseUpdated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "runId",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "content",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "functionName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "functionArguments",
+						"type": "string"
+					},
+					{
+						"internalType": "uint64",
+						"name": "created",
+						"type": "uint64"
+					},
+					{
+						"internalType": "string",
+						"name": "model",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "systemFingerprint",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "object",
+						"type": "string"
+					},
+					{
+						"internalType": "uint32",
+						"name": "completionTokens",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "promptTokens",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "totalTokens",
+						"type": "uint32"
+					}
+				],
+				"internalType": "struct IOracle.OpenAiResponse",
+				"name": "response",
+				"type": "tuple"
+			},
+			{
+				"internalType": "string",
+				"name": "errorMessage",
+				"type": "string"
+			}
+		],
+		"name": "onOracleOpenAiLlmResponse",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOracleAddress",
+				"type": "address"
+			}
+		],
+		"name": "OracleAddressUpdated",
 		"type": "event"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "newOwner",
+				"name": "newOracleAddress",
 				"type": "address"
 			}
 		],
-		"name": "transferOwnership",
+		"name": "setOracleAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -277,91 +201,45 @@ export const APP_CONTRACT_ABI = [
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "label",
+				"name": "message",
 				"type": "string"
 			},
 			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "resumeData",
-				"type": "string"
+				"internalType": "string[]",
+				"name": "imageUrls",
+				"type": "string[]"
 			}
 		],
-		"name": "update",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "withdraw",
-		"outputs": [],
+		"name": "startChat",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "i",
+				"type": "uint256"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "subname",
-				"type": "string"
-			}
-		],
-		"name": "getRegistrationFee",
-		"outputs": [
-			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "isPremiumName",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
+		"name": "chatRuns",
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "owner",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "parentNode",
-		"outputs": [
+			},
 			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
+				"internalType": "uint256",
+				"name": "messagesCount",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -370,30 +248,41 @@ export const APP_CONTRACT_ABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "premiumFees",
-		"outputs": [
-			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "chatId",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "tableId",
+		"name": "getMessageHistory",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"components": [
+					{
+						"internalType": "string",
+						"name": "role",
+						"type": "string"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "contentType",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "value",
+								"type": "string"
+							}
+						],
+						"internalType": "struct IOracle.Content[]",
+						"name": "content",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct IOracle.Message[]",
 				"name": "",
-				"type": "uint256"
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -401,23 +290,10 @@ export const APP_CONTRACT_ABI = [
 	},
 	{
 		"inputs": [],
-		"name": "tableland",
+		"name": "oracleAddress",
 		"outputs": [
 			{
-				"internalType": "contract ITableland",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "wrapper",
-		"outputs": [
-			{
-				"internalType": "contract INameWrapper",
+				"internalType": "address",
 				"name": "",
 				"type": "address"
 			}
@@ -425,4 +301,4 @@ export const APP_CONTRACT_ABI = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
+];

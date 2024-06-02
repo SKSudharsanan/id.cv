@@ -5,29 +5,38 @@ import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { useAppDispatch } from "../redux";
 
-import { loginUserAction } from "../redux/auth/auth-slice";
-
 import FormInput from "../components/form-input";
 import Button from "../components/button";
+
+import { loginUserAction } from "../redux/auth/auth-slice";
 
 import Icon from "../assets/svg";
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const account = useAccount();
+  const account: any = useAccount();
   const { open } = useWeb3Modal();
 
   const { user } = useSelector((state: any) => state.authSlice);
 
-  const [domain, setDomain] = useState("sfolayan.id.cv");
+  const [label, setLabel] = useState("");
 
   useEffect(() => {
-    if (account?.isConnected) {
-      dispatch(loginUserAction(account.address));
+    if (account?.isConnected && account?.address) {
+      authenticateUser();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
+
+  const authenticateUser = async () => {
+    dispatch(
+      loginUserAction({
+        address: account.address,
+        domain: label,
+      })
+    );
+  };
 
   if (user) {
     return <>{history.push("/my-data")}</>;
@@ -60,9 +69,9 @@ const RegisterPage = () => {
           <FormInput
             label="Choose your id.cv name"
             type="text"
-            placeholder="sfolayan.id.cv"
-            value={domain}
-            onChange={(e) => setDomain(e?.target?.value)}
+            placeholder="sfolayan"
+            value={label}
+            onChange={(e) => setLabel(e?.target?.value)}
             readOnly={account?.isConnecting}
           />
 
@@ -72,7 +81,7 @@ const RegisterPage = () => {
             </div>
 
             <div className="info">
-              <h6>Domain: {domain}</h6>
+              <h6>Domain: {label || "___"}.id.cv</h6>
               <p>Price: Free</p>
             </div>
           </div>
@@ -80,7 +89,7 @@ const RegisterPage = () => {
           <Button
             text="Connect Wallet"
             onClick={() => open()}
-            disabled={!domain}
+            disabled={label?.length < 3}
             loading={account?.isConnecting}
           />
         </div>

@@ -1,15 +1,15 @@
 /* eslint-disable no-fallthrough */
-import { APP_USER } from "./constants";
+import { APP_USER, APP_MY_DATA } from "./constants";
 
 // Storage operations
 export const useStorage = {
   set: (key: string, data: any) => {
     let stringifiedData = JSON.stringify(data);
-    localStorage.setItem(key, stringifiedData);
+    sessionStorage.setItem(key, stringifiedData);
   },
 
   get: (key: string) => {
-    const data: any = JSON.parse(localStorage.getItem(key)!);
+    const data: any = JSON.parse(sessionStorage.getItem(key)!);
 
     if (!data) {
       return null;
@@ -18,11 +18,11 @@ export const useStorage = {
   },
 
   remove: (key: string) => {
-    localStorage.removeItem(key);
+    sessionStorage.removeItem(key);
   },
 
   clear: () => {
-    localStorage.clear();
+    sessionStorage.clear();
   },
 };
 
@@ -34,19 +34,16 @@ export const getUserDetails = () => {
 
 export const logoutUser = () => {
   useStorage.remove(APP_USER);
+  useStorage.remove(APP_MY_DATA);
   window.location.reload();
 };
 
 export const getRequestError = (error: any) => {
   const { response } = error;
-  if (response && (response.data.code === 401 || response.status === 401)) {
-    if (!response.data.message?.includes("token")) {
-      return response.data?.message;
-    }
-  } else if (response && response.data.errors && response.data.errors[0]) {
-    return response.data.errors[0].message;
-  } else if (response && response.data.message) {
-    return response.data.message;
+  console.log(response, "response");
+  
+  if (response && typeof response.data === "string") {
+    return response.data;
   } else if (response && response.data.error) {
     return response.data.error;
   }
