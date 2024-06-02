@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 import FormInput from "../../components/form-input";
 import Button from "../../components/button";
@@ -12,9 +11,7 @@ type Props = {
 };
 
 const DomainForm = ({ close, onSubmit, isLoading }: Props) => {
-  const { user } = useSelector((state: any) => state.authSlice);
-
-  const [domain, setDomain] = useState(user?.domain || "");
+  const [domain, setDomain] = useState("");
 
   const submitForm = () => {
     onSubmit(domain);

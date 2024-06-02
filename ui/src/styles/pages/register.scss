@@ -72,16 +72,15 @@
         max-width: 343px;
         width: 100%;
 
-        .form_group_container {
-          label {
-            font-size: 0.95em;
-            font-weight: 600;
-            color: $color-primary;
+        .logo_container {
+          img {
+            width: 140px;
+            height: auto;
           }
         }
 
         .btn_primary {
-          margin-top: 32px;
+          margin-top: 48px;
           padding: 15px 20px;
           padding-bottom: 16px;
           font-weight: 500;
