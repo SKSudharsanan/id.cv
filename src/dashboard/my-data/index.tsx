@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux";
+import { ethers } from "ethers";
+import { setAlert } from "../../redux/components/components-slice";
+import { APP_CONTRACT_ABI } from "../../utils/constants";
+import { getRequestError } from "../../utils/functions";
+import { useEthersSigner } from "../../ethereum/use-ether-signer";
+
 
 import PageTitle from "../../components/page-title";
 import Button from "../../components/button";
@@ -29,10 +35,12 @@ const myResumeNav = navigations[2].label;
 
 const MyDataPage = () => {
   const dispatch = useAppDispatch();
+  const signer = useEthersSigner();
+
 
   const { user } = useSelector((state: any) => state.authSlice);
   const { isFetching, myData } = useSelector((state: any) => state.dataSlice);
-
+  const [domainName, setDomainName] = useState("");
   const [activeNav, setActiveNav] = useState(myData ? myResumeNav : "");
   const [showNewResume, setShowNewResume] = useState(false);
 
@@ -75,6 +83,42 @@ const MyDataPage = () => {
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
+  };
+
+  const registerSubDomain = async () => {
+
+    const contract = new ethers.Contract(
+      process.env.REACT_APP_SMART_CONTRACT_ADDRESS || "",
+      APP_CONTRACT_ABI,
+      signer
+    );
+    const parentNode =
+      "0xb6f17a44c72d1879e8ac12da42bb822b48cfd2bd7b6657787e3de381640c05da";
+    const label = user.domain;
+    const newOwner = user.address;
+    const fuses = 0;
+    const duration = Math.floor(Date.now() / 1000) + 365 * 24 * 60 * 60;
+
+    try {
+      const tx = await contract.register(
+        parentNode,
+        label,
+        newOwner,
+        fuses,
+        duration,
+        myData.contentHash,
+        { value: ethers.parseEther("0.001") }
+      );
+      console.log("Transaction hash:", tx.hash);
+      const receipt = await tx.wait();
+      console.log("Transaction was mined in block:", receipt.blockNumber);
+
+      dispatch(setAlert(true, "success", "Domain registration successful!"));
+    } catch (error) {
+      console.error("Error registering subdomain:", error);
+      dispatch(setAlert(true, "error", getRequestError(error)));
+
+    }
   };
 
   return (
@@ -131,6 +175,20 @@ const MyDataPage = () => {
                   </div>
                 </div>
               )}
+
+            {myData && (
+                <div className="mint-resume">
+                  <h3>Mint Your Resume</h3>
+                  <input 
+                    type="text" 
+                    placeholder="Enter domain name" 
+                    value={domainName} 
+                    onChange={(e) => setDomainName(e.target.value)} 
+                  />
+                  <Button text="Mint Your Resume" onClick={registerSubDomain} />
+                </div>
+              )}
+
             </div>
 
             <hr />
