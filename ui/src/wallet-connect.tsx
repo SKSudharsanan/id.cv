@@ -1,7 +1,7 @@
 import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 
-import { arbitrum, mainnet } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 
 const projectId = process.env.REACT_APP_WALLET_CONNECT_PROJ_ID || "";
 
@@ -12,7 +12,7 @@ const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
-const chains = [mainnet, arbitrum] as const;
+const chains = [sepolia] as const;
 export const config = defaultWagmiConfig({
   chains,
   projectId,
