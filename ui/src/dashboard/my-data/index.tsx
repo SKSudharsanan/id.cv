@@ -18,7 +18,10 @@ import NewResumeUploader from "./new-resume";
 import DomainForm from "./domain";
 
 import { setAlert } from "../../redux/components/components-slice";
-import { getResumeDataAction } from "../../redux/data/data-slice";
+import {
+  getResumeDataAction,
+  postUpdateSavedDataAction,
+} from "../../redux/data/data-slice";
 
 import Icon from "../../assets/svg";
 
@@ -53,7 +56,7 @@ const MyDataPage = () => {
   }, []);
 
   const getResumeData = () => {
-    dispatch(getResumeDataAction(user?.domain + ".idcv.xyz")).then(() => {
+    dispatch(getResumeDataAction(myData?.domain + ".idcv.xyz")).then(() => {
       console.log(myData, "myData");
     });
   };
@@ -108,16 +111,24 @@ const MyDataPage = () => {
         newOwner,
         fuses,
         duration,
-        "0x"+ myData.contentHash,
+        "0x" + myData.contentHash,
         { value: ethers.parseEther("0.001") }
       );
-      console.log("Transaction hash:", tx.hash);
+
       const receipt = await tx.wait();
-      console.log("Transaction was mined in block:", receipt.blockNumber);
+      if (receipt?.blockNumber) {
+        dispatch(
+          postUpdateSavedDataAction({
+            ...(myData || {}),
+            domain,
+          })
+        );
+        dispatch(
+          setAlert(true, "success", "Subdomain registration successful!")
+        );
+      }
 
       setIsRegistering(false);
-      dispatch(setAlert(true, "success", "Subdomain registration successful!"));
-
       closeMintDomain();
     } catch (error) {
       console.error("Error registering subdomain:", error);
