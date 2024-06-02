@@ -10,7 +10,9 @@ const ResumeData = () => {
       </div>
 
       <div className="content">
-        <pre>{`${myData?.resumeData}`}</pre>
+        <pre>{`${
+          myData?.resumeData ? JSON.stringify(myData?.resumeData) : ""
+        }`}</pre>
       </div>
     </div>
   );
