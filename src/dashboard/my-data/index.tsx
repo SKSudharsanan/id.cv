@@ -143,6 +143,7 @@ const MyDataPage = () => {
                   <div className="actions">
                     <Button text="Update" onClick={toggleNewResume} />
                     <Button text="Download JSON" onClick={downloadJSON} />
+                    <Button text="Mint Domain" onClick={registerSubDomain} />
                   </div>
                 )}
               </div>
