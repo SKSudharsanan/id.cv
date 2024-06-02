@@ -112,11 +112,10 @@ export const postGenerateResumeAction =
     dispatch(setIsGenerating(true));
 
     try {
-      console.log("resumeData", data.resumeData)
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/generate_resume`,
         {
-          resumeData: data.resumeData,
+          resumeData: JSON.parse(data.resumeData),
           theme: data.theme,
         }
       );

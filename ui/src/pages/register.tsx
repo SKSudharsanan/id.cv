@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { useAppDispatch } from "../redux";
 
-import FormInput from "../components/form-input";
+import Logo from "../components/logo";
 import Button from "../components/button";
 
 import { loginUserAction } from "../redux/auth/auth-slice";
@@ -20,8 +20,6 @@ const RegisterPage = () => {
 
   const { user } = useSelector((state: any) => state.authSlice);
 
-  const [label, setLabel] = useState("");
-
   useEffect(() => {
     if (account?.isConnected && account?.address) {
       authenticateUser();
@@ -33,7 +31,6 @@ const RegisterPage = () => {
     dispatch(
       loginUserAction({
         address: account.address,
-        domain: label,
       })
     );
   };
@@ -66,14 +63,7 @@ const RegisterPage = () => {
         </div>
 
         <div className="form_container">
-          <FormInput
-            label="Choose your id.cv name [Optional]"
-            type="text"
-            placeholder="sfolayan"
-            value={label}
-            onChange={(e) => setLabel(e?.target?.value)}
-            readOnly={account?.isConnecting}
-          />
+          <Logo colored={true} />
 
           <Button
             text="Connect Wallet"
