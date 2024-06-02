@@ -56,7 +56,8 @@ export const getResumeDataAction =
       );
 
       dispatch(setIsFetching(false));
-      dispatch(generateSuccess(response.data));
+      console.log("getResumeDataAction: ", response.data);
+      // dispatch(generateSuccess(response.data));
     } catch (error) {
       dispatch(setIsFetching(false));
     }

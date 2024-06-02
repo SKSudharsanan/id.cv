@@ -56,9 +56,9 @@ const MyDataPage = () => {
   }, []);
 
   const getResumeData = () => {
-    dispatch(getResumeDataAction(myData?.domain + ".idcv.xyz")).then(() => {
-      console.log(myData, "myData");
-    });
+    if (myData?.domain) {
+      dispatch(getResumeDataAction(myData?.domain + ".idcv.xyz"));
+    }
   };
 
   useEffect(() => {
@@ -172,7 +172,7 @@ const MyDataPage = () => {
 
                 {!showHeaderActions && (
                   <div className="actions">
-                    {myData && (
+                    {!myData?.domain && (
                       <Button text="Mint Domain" onClick={toggleMintDomain} />
                     )}
                     <Button
