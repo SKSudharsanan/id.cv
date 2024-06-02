@@ -176,20 +176,6 @@ const MyDataPage = () => {
                   </div>
                 </div>
               )}
-
-            {myData && (
-                <div className="mint-resume">
-                  <h3>Mint Your Resume</h3>
-                  <input 
-                    type="text" 
-                    placeholder="Enter domain name" 
-                    value={domainName} 
-                    onChange={(e) => setDomainName(e.target.value)} 
-                  />
-                  <Button text="Mint Your Resume" onClick={registerSubDomain} />
-                </div>
-              )}
-
             </div>
 
             <hr />
