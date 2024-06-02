@@ -14,7 +14,7 @@ type Props = {
   myData: {} | any;
 };
 export const initialState: Props = {
-  isFetching: true,
+  isFetching: false,
   isUploading: false,
   isGenerating: false,
   myData: useStorage.get(APP_MY_DATA),
