@@ -1,0 +1,198 @@
+.form_group_div {
+  label {
+    font-weight: 400;
+    font-size: 0.9em;
+    color: $color-black-01;
+  }
+
+  .d_flex {
+    @include flexPosition(flex-start, flex-start);
+
+    &.radio_selection_div {
+      margin-top: 8px;
+      gap: 20px;
+
+      .form_group_container {
+        margin: 0;
+
+        .form-check-input {
+          width: 18px;
+          height: 18px;
+        }
+
+        .form-check-label {
+          color: $color-black-01;
+        }
+      }
+    }
+  }
+}
+
+.form_group_date {
+  .datepicker_container {
+    padding: 12px !important;
+    font-size: 1em;
+    height: auto;
+    color: $color-black-01;
+    border: 1px solid $color-grey-04;
+    border-radius: 3px;
+    width: 100%;
+  }
+}
+
+.form_group_container {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin: 0;
+  }
+
+  .form-group {
+    display: grid;
+    margin-bottom: 0;
+
+    &.form-check {
+      @include flexPosition(flex-start, flex-start);
+      margin-bottom: 12px;
+      width: fit-content;
+      cursor: pointer;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      .form-check-input {
+        position: relative;
+        margin-top: 0;
+        margin-right: 0;
+        width: 18px;
+        height: 18px;
+        border: 1px solid $color-grey-04;
+        cursor: pointer;
+
+        vertical-align: top;
+        appearance: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border-radius: 0.25em;
+
+        &:focus {
+          border: 1px solid $color-grey-04 !important;
+        }
+      }
+
+      label {
+        margin: 0 !important;
+        padding-left: 6px;
+        font-weight: 400 !important;
+        font-size: 0.85em;
+        width: inherit;
+        color: $color-grey-01;
+        cursor: pointer;
+
+        span,
+        a {
+          font-weight: 500 !important;
+          color: $color-black-01;
+          line-height: 140%;
+        }
+      }
+    }
+
+    label {
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 0.95em;
+      color: $color-primary;
+    }
+
+    .flex_input {
+      @include flexPosition(flex-start, center);
+      gap: 12px;
+      padding: 13px 16px;
+      border: 1px solid $color-grey-04;
+      border-radius: 12px;
+
+      &:focus-within {
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        outline: 0px auto -webkit-focus-ring-color !important;
+        outline: none !important;
+        border: 1px solid $color-primary !important;
+        border-radius: 12px;
+      }
+
+      &.error {
+        border: 1px solid $color-error !important;
+      }
+    }
+
+    .form-control {
+      padding: 0px !important;
+      padding-bottom: 2px !important;
+      font-size: 1em;
+      font-weight: 500;
+      height: auto;
+      width: 100%;
+      color: $color-black-01;
+      background: transparent;
+      border: none;
+
+      &:focus {
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        outline: 0px auto -webkit-focus-ring-color !important;
+        outline: none !important;
+        border: none !important;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        box-shadow: 0 0 0 30px white inset !important;
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      /* Firefox */
+      &[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      &[type="file"] {
+        padding-left: 17px !important;
+      }
+
+      &input:read-only {
+        background-color: $color-grey-04;
+        opacity: 1;
+      }
+    }
+
+    .icon {
+      @include flexPosition(center, center);
+      background: transparent;
+      cursor: pointer;
+
+      &.left_icon {
+        cursor: auto;
+      }
+    }
+  }
+
+  .error_message {
+    @include flexPosition(flex-start, center);
+    gap: 4px;
+    margin-top: 3px;
+    font-size: 0.8em;
+    font-weight: 500;
+    line-height: normal;
+    color: $color-error;
+  }
+}

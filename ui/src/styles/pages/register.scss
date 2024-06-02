@@ -1,0 +1,126 @@
+.register_page_container {
+  @include gridColumns(1fr 1fr, 0px);
+  height: 100vh;
+
+  @include llgScreen {
+    @include gridColumns(220px 1fr, 0px);
+  }
+
+  @include mmdScreen {
+    display: block;
+  }
+
+  .side {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    &.left_side {
+      @include flexPosition(center, center);
+      flex-direction: column;
+      background: linear-gradient($color-gradient-01, $color-gradient-02);
+
+      @include mmdScreen {
+        display: none;
+      }
+
+      .animated_text {
+        position: absolute;
+        left: -10%;
+        top: 8%;
+        width: 110%;
+        transform: rotate(-10deg);
+
+        @include llgScreen {
+          left: -15%;
+          top: -10%;
+          width: 500%;
+          transform: rotate(-15deg);
+        }
+      }
+
+      .occupations {
+        width: 100%;
+        height: 50vh;
+        background-image: url("../../assets/svg/occupations.svg");
+        background-position: left;
+        background-size: cover;
+      }
+    }
+
+    &.right_side {
+      @include sectionPadding;
+      @include flexPosition(space-between, center);
+      flex-direction: column;
+      padding-top: 48px;
+      padding-bottom: 48px;
+      height: inherit;
+
+      .top {
+        width: 100%;
+        height: 40px;
+
+        .icon {
+          @include circle(40px, 40px);
+          @include flexPosition(center, center);
+          margin: 0 0 0 auto;
+          box-shadow: $box-shadow;
+        }
+      }
+
+      .form_container {
+        max-width: 343px;
+        width: 100%;
+
+        .form_group_container {
+          label {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: $color-primary;
+          }
+        }
+
+        .domain_preview {
+          @include flexPosition(flex-start, center);
+          gap: 14px;
+          padding: 16px;
+          background: $color-grey-01;
+          border-radius: 12px;
+
+          .icon {
+            @include circle(45px, 45px);
+            @include flexPosition(center, center);
+            background: $color-white;
+
+            svg {
+              color: $color-primary;
+            }
+          }
+
+          .info {
+            h6 {
+              font-size: 0.95em;
+              font-weight: bold;
+              color: $color-primary;
+            }
+
+            p {
+              margin-top: 3px;
+              font-size: 0.9em;
+              font-weight: 500;
+              color: $color-black-03;
+            }
+          }
+        }
+
+        .btn_primary {
+          margin-top: 16px;
+          padding: 15px 20px;
+          padding-bottom: 16px;
+          font-weight: 500;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

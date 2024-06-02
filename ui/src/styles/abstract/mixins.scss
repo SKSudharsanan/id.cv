@@ -1,0 +1,126 @@
+@mixin pageContentContainerPadding {
+  padding: 32px 32px 60px 32px;
+
+  @include lgScreen {
+    padding: 32px 24px 60px 24px;
+  }
+
+  @include mmdScreen {
+    padding: 32px 12px 60px 12px;
+  }
+}
+
+@mixin sectionPadding {
+  padding-left: 8%;
+  padding-right: 8%;
+
+  @include xlScreen {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+
+  @include llgScreen {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @include mmdScreen {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@mixin circle($width, $height) {
+  width: $width;
+  height: $height;
+  border-radius: 50%;
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin ellipsisHeight($height) {
+  display: -webkit-box;
+  -webkit-line-clamp: $height;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin flexPosition($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin gridColumns($columns: 0.5fr 3fr 1fr 1fr 1fr 1fr, $gap: 24px) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+@mixin verticalScrollTransition {
+  animation: verticalScroll 6s linear infinite;
+  -webkit-animation: verticalScroll 6s linear infinite;
+}
+@keyframes verticalScroll {
+  0% {
+    margin-left: 0%;
+  }
+  100% {
+    margin-left: -100%;
+  }
+}
+
+// Responsiveness
+
+@mixin xxlScreen() {
+  @media (max-width: 1450px) {
+    @content;
+  }
+}
+
+@mixin xlScreen() {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin llgScreen() {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin lgScreen() {
+  @media (max-width: 850px) {
+    @content;
+  }
+}
+
+@mixin mdScreen() {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin mmdScreen() {
+  @media (max-width: 670px) {
+    @content;
+  }
+}
+
+@mixin smScreen() {
+  @media (max-width: 450px) {
+    @content;
+  }
+}
+
+@mixin xsScreen() {
+  @media (max-width: 320px) {
+    @content;
+  }
+}

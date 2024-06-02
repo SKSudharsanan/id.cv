@@ -1,0 +1,173 @@
+.sidebar_container {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: $color-white;
+  z-index: 1;
+
+  .sidebar_container_inner {
+    @include flexPosition(flex-start, flex-start);
+    flex-direction: column;
+    padding: 0px;
+    padding-bottom: 30px;
+    height: 100vh;
+    width: 0px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: 0px;
+    }
+  }
+
+  &.sidebar_open {
+    @media screen and (max-width: 850px) {
+      &::after {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin-left: $sidebar-width;
+        content: "";
+        background: rgba(0, 0, 0, 0.45);
+      }
+    }
+
+    .close_menu {
+      display: none;
+
+      @include lgScreen {
+        @include flexPosition(center, center);
+        margin: 20px 12px 0 auto;
+        width: fit-content;
+        cursor: pointer;
+
+        svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+
+    .logo_container {
+      padding: 18px 12px;
+      width: fit-content;
+
+      @include lgScreen {
+        display: none;
+      }
+
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+
+    .sidebar_container_inner {
+      padding: 38px 12px;
+      width: $sidebar-width;
+
+      .user {
+        @include flexPosition(space-between, center);
+        gap: 8px;
+        padding: 10px 12px;
+        width: 100%;
+        background: $color-grey-01;
+        border-radius: 12px;
+
+        .info {
+          @include flexPosition(flex-start, center);
+          gap: 8px;
+          width: 100%;
+          overflow: hidden;
+
+          .icon {
+            @include flexPosition(center, center);
+            @include circle(42px, 36px);
+            padding: 7px;
+            background: $color-grey-02;
+          }
+
+          p {
+            @include ellipsis;
+            font-weight: 600;
+            width: 100%;
+            background: linear-gradient($color-gradient-01, $color-gradient-02);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+
+        .chevron {
+          @include flexPosition(center, center);
+
+          svg {
+            width: 24px;
+            height: 24px;
+
+            path {
+              color: $color-grey-04;
+            }
+          }
+        }
+      }
+
+      .links {
+        margin-top: 32px;
+
+        .link {
+          @include flexPosition(flex-start, center);
+          gap: 8px;
+          margin-bottom: 24px;
+
+          &:last-child {
+            margin: 0;
+          }
+
+          &.active {
+            .icon {
+              background: linear-gradient(
+                $color-gradient-01,
+                $color-gradient-02
+              );
+
+              svg {
+                color: $color-white;
+              }
+            }
+
+            p {
+              font-weight: 600;
+              background: linear-gradient(
+                $color-gradient-01,
+                $color-gradient-02
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+          }
+
+          .icon {
+            @include flexPosition(center, center);
+            @include circle(44px, 36px);
+            padding: 7px;
+            background: $color-grey-02;
+          }
+
+          p {
+            @include ellipsis;
+            font-weight: 500;
+            width: 100%;
+            color: $color-black-01;
+            letter-spacing: 0.3px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.top_bar_container {
+  @include sectionPadding;
+  @include flexPosition(flex-start, center);
+  gap: 18px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background: $color-white;
+  border-bottom: 1px solid $color-grey-00;
+
+  .menu {
+    display: none;
+
+    @include lgScreen {
+      @include flexPosition(center, center);
+      width: fit-content;
+      cursor: pointer;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .logo_container {
+    width: fit-content;
+    display: none;
+
+    @include lgScreen {
+      display: flex;
+    }
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+
+  .logout {
+    @include flexPosition(flex-end, center);
+    gap: 10px;
+    margin: 0 0 0 auto;
+    width: fit-content;
+    cursor: pointer;
+
+    .icon {
+      @include flexPosition(flex-end, center);
+      @include circle(36px, 36px);
+      padding: 7px;
+      background: $color-grey-02;
+    }
+
+    p {
+      font-weight: 500;
+    }
+  }
+}
