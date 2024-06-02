@@ -6,7 +6,6 @@ import { setAlert } from "../components/components-slice";
 
 import { useStorage, getRequestError } from "../../utils/functions";
 import { APP_MY_DATA } from "../../utils/constants";
-import ResumeData from "../../dashboard/my-data/resume-data";
 
 type Props = {
   isFetching: boolean;
@@ -57,7 +56,8 @@ export const getResumeDataAction =
       );
 
       dispatch(setIsFetching(false));
-      dispatch(generateSuccess(response.data));
+      console.log("getResumeDataAction: ", response.data);
+      // dispatch(generateSuccess(response.data));
     } catch (error) {
       dispatch(setIsFetching(false));
     }
@@ -137,4 +137,11 @@ export const postGenerateResumeAction =
 
       dispatch(setIsGenerating(false));
     }
+  };
+
+export const postUpdateSavedDataAction =
+  (data: any) => async (dispatch: any) => {
+    dispatch(setIsUploading(true));
+
+    dispatch(generateSuccess(data));
   };
