@@ -50,7 +50,7 @@ const NewResumeUploader = ({ close }: Props) => {
   const handleGenerateResume = async (data: any) => {
     const payload: any = {
       chatId: data?.id,
-      resumeData: data?.data,
+      resumeData: JSON.parse(data?.data),
       theme: "modern",
     };
 
