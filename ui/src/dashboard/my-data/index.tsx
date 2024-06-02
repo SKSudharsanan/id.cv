@@ -3,14 +3,11 @@ import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux";
 import { ethers } from "ethers";
-import { setAlert } from "../../redux/components/components-slice";
-import { APP_CONTRACT_ABI } from "../../utils/constants";
-import { getRequestError } from "../../utils/functions";
 import { useEthersSigner } from "../../ethereum/use-ether-signer";
-
 
 import PageTitle from "../../components/page-title";
 import Button from "../../components/button";
+import Loader from "../../components/loader";
 
 import OfficialName from "./official-name";
 import Email from "./email";
@@ -18,11 +15,15 @@ import ResumeData from "./resume-data";
 import Certificates from "./certificates";
 import Identification from "./identification";
 import NewResumeUploader from "./new-resume";
+import DomainForm from "./domain";
 
+import { setAlert } from "../../redux/components/components-slice";
 import { getResumeDataAction } from "../../redux/data/data-slice";
 
 import Icon from "../../assets/svg";
-import Loader from "../../components/loader";
+
+import { APP_CONTRACT_ABI } from "../../utils/constants";
+import { getRequestError } from "../../utils/functions";
 
 const navigations = [
   { key: "name", label: "Official Name" },
@@ -37,12 +38,13 @@ const MyDataPage = () => {
   const dispatch = useAppDispatch();
   const signer = useEthersSigner();
 
-
   const { user } = useSelector((state: any) => state.authSlice);
   const { isFetching, myData } = useSelector((state: any) => state.dataSlice);
-  const [domainName, setDomainName] = useState("");
+
   const [activeNav, setActiveNav] = useState(myData ? myResumeNav : "");
   const [showNewResume, setShowNewResume] = useState(false);
+  const [showMintDomain, setShowMintDomain] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   useEffect(() => {
     getResumeData();
@@ -51,7 +53,7 @@ const MyDataPage = () => {
   }, []);
 
   const getResumeData = () => {
-    dispatch(getResumeDataAction(user?.domain+".idcv.xyz")).then(() => {
+    dispatch(getResumeDataAction(user?.domain + ".idcv.xyz")).then(() => {
       console.log(myData, "myData");
     });
   };
@@ -74,18 +76,18 @@ const MyDataPage = () => {
     setShowNewResume(false);
   };
 
-  const downloadJSON = () => {
-    var dataStr =
-      "data:text/json;charset=utf-8," + encodeURIComponent(myData?.resumeData);
-    var downloadAnchorNode = document.createElement("a");
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "[ID.CV] My Resume.json");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+  const toggleMintDomain = () => {
+    setActiveNav("");
+    setShowMintDomain(true);
   };
 
-  const registerSubDomain = async () => {
+  const closeMintDomain = () => {
+    setActiveNav(myResumeNav);
+    setShowMintDomain(false);
+  };
+
+  const registerSubDomain = async (domain: string) => {
+    setIsRegistering(true);
 
     const contract = new ethers.Contract(
       process.env.REACT_APP_SMART_CONTRACT_ADDRESS || "",
@@ -94,7 +96,7 @@ const MyDataPage = () => {
     );
     const parentNode =
       "0xb6f17a44c72d1879e8ac12da42bb822b48cfd2bd7b6657787e3de381640c05da";
-    const label = user.domain;
+    const label = domain;
     const newOwner = user.address;
     const fuses = 0;
     const duration = Math.floor(Date.now() / 1000) + 365 * 24 * 60 * 60;
@@ -113,13 +115,31 @@ const MyDataPage = () => {
       const receipt = await tx.wait();
       console.log("Transaction was mined in block:", receipt.blockNumber);
 
-      dispatch(setAlert(true, "success", "Domain registration successful!"));
+      setIsRegistering(false);
+      dispatch(setAlert(true, "success", "Subdomain registration successful!"));
+
+      closeMintDomain();
     } catch (error) {
       console.error("Error registering subdomain:", error);
-      dispatch(setAlert(true, "error", getRequestError(error)));
 
+      setIsRegistering(false);
+      dispatch(setAlert(true, "error", getRequestError(error)));
     }
   };
+
+  const downloadJSON = () => {
+    var dataStr =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(myData?.resumeData ? myData?.resumeData : myData);
+    var downloadAnchorNode = document.createElement("a");
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "[ID.CV] My Resume.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
+
+  const showHeaderActions = showNewResume || showMintDomain;
 
   return (
     <React.Fragment>
@@ -139,19 +159,32 @@ const MyDataPage = () => {
                   <p>Yours always.</p>
                 </div>
 
-                {!showNewResume && (
+                {!showHeaderActions && (
                   <div className="actions">
-                    <Button text="Update" onClick={toggleNewResume} />
-                    <Button text="Download JSON" onClick={downloadJSON} />
-                    <Button text="Mint Domain" onClick={registerSubDomain} />
+                    {myData && (
+                      <Button text="Mint Domain" onClick={toggleMintDomain} />
+                    )}
+                    <Button
+                      text="Update"
+                      className="btn_secondary"
+                      onClick={toggleNewResume}
+                    />
+                    <Button
+                      text="Download JSON"
+                      className="btn_secondary"
+                      onClick={downloadJSON}
+                    />
                   </div>
                 )}
               </div>
 
               {showNewResume ? (
-                <NewResumeUploader
-                  close={closeNewResume}
-                  onSuccess={getResumeData}
+                <NewResumeUploader close={closeNewResume} />
+              ) : showMintDomain ? (
+                <DomainForm
+                  close={closeMintDomain}
+                  onSubmit={(domain) => registerSubDomain(domain)}
+                  isLoading={isRegistering}
                 />
               ) : (
                 <div className="navigation">

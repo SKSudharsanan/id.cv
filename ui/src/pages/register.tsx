@@ -67,7 +67,7 @@ const RegisterPage = () => {
 
         <div className="form_container">
           <FormInput
-            label="Choose your id.cv name"
+            label="Choose your id.cv name [Optional]"
             type="text"
             placeholder="sfolayan"
             value={label}
@@ -75,21 +75,9 @@ const RegisterPage = () => {
             readOnly={account?.isConnecting}
           />
 
-          <div className="domain_preview">
-            <div className="icon">
-              <Icon name="cart" />
-            </div>
-
-            <div className="info">
-              <h6>Domain: {label || "___"}.id.cv</h6>
-              <p>Price: Free</p>
-            </div>
-          </div>
-
           <Button
             text="Connect Wallet"
             onClick={() => open()}
-            disabled={label?.length < 3}
             loading={account?.isConnecting}
           />
         </div>

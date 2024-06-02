@@ -40,7 +40,6 @@ export const logoutUser = () => {
 
 export const getRequestError = (error: any) => {
   const { response } = error;
-  console.log(response, "response");
   
   if (response && typeof response.data === "string") {
     return response.data;

@@ -80,41 +80,8 @@
           }
         }
 
-        .domain_preview {
-          @include flexPosition(flex-start, center);
-          gap: 14px;
-          padding: 16px;
-          background: $color-grey-01;
-          border-radius: 12px;
-
-          .icon {
-            @include circle(45px, 45px);
-            @include flexPosition(center, center);
-            background: $color-white;
-
-            svg {
-              color: $color-primary;
-            }
-          }
-
-          .info {
-            h6 {
-              font-size: 0.95em;
-              font-weight: bold;
-              color: $color-primary;
-            }
-
-            p {
-              margin-top: 3px;
-              font-size: 0.9em;
-              font-weight: 500;
-              color: $color-black-03;
-            }
-          }
-        }
-
         .btn_primary {
-          margin-top: 16px;
+          margin-top: 32px;
           padding: 15px 20px;
           padding-bottom: 16px;
           font-weight: 500;

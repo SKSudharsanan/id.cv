@@ -126,6 +126,9 @@ export const postGenerateResumeAction =
       dispatch(generateSuccess(result));
       dispatch(setIsGenerating(false));
 
+      dispatch(
+        setAlert(true, "success", "Resume data generated successfully!")
+      );
       return { success: true };
     } catch (error) {
       const errorMessage = getRequestError(error);

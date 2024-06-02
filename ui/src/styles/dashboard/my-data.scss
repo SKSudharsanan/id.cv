@@ -28,6 +28,7 @@
 
     .section_header {
       @include flexPosition(space-between, flex-start);
+      flex-direction: column;
       gap: 18px;
 
       @media (max-width: 620px) {
@@ -51,23 +52,68 @@
 
       .actions {
         @include flexPosition(flex-end, center);
+        flex-wrap: wrap;
         gap: 12px;
-
-        @media (max-width: 620px) {
-          margin: 0 0 0 auto;
-        }
+        margin: 0 0 0 auto;
 
         .btn_primary {
           padding: 11px 20px;
           padding-bottom: 12px;
           font-size: 0.95em;
           font-weight: 500;
-          min-width: 170px;
+        }
+      }
+    }
 
-          @media (max-width: 620px) {
-            min-width: auto;
+    .register_domain {
+      margin: 60px auto;
+      max-width: 380px;
+
+      .form_group_container {
+        label {
+          font-size: 0.95em;
+          font-weight: 600;
+          color: $color-primary;
+        }
+      }
+
+      .domain_preview {
+        @include flexPosition(flex-start, center);
+        gap: 14px;
+        padding: 16px;
+        background: $color-grey-01;
+        border-radius: 12px;
+
+        .icon {
+          @include circle(45px, 45px);
+          @include flexPosition(center, center);
+          background: $color-white;
+
+          svg {
+            color: $color-primary;
           }
         }
+
+        .info {
+          h6 {
+            font-size: 0.95em;
+            font-weight: bold;
+            color: $color-primary;
+          }
+
+          p {
+            margin-top: 3px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: $color-black-03;
+          }
+        }
+      }
+
+      .actions {
+        @include flexPosition(space-between, center);
+        gap: 12px;
+        margin-top: 24px;
       }
     }
 
