@@ -43,7 +43,7 @@ const MyDataPage = () => {
   }, []);
 
   const getResumeData = () => {
-    dispatch(getResumeDataAction(user?.domain)).then(() => {
+    dispatch(getResumeDataAction(user?.domain+".idcv.xyz")).then(() => {
       console.log(myData, "myData");
     });
   };
