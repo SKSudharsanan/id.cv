@@ -12,6 +12,8 @@ import axios from 'axios';
 import namehash from 'eth-ens-namehash';
 import { load } from '@pspdfkit/nodejs';
 import multer from 'multer';
+import cors from 'cors';
+
 const domain = process.env.DOMAIN;
 
 
@@ -385,6 +387,9 @@ const port = 3000;
 
 // Middleware
 app.use(bodyParser.json());
+
+//cors
+app.use(cors())
 
 //wildcard
 app.use((req, res, next) => {
