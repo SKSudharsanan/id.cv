@@ -561,7 +561,7 @@ app.post('/get_resume_data', upload.single('pdf'), async (req, res) => {
     setTimeout(async function() {
         let newMessages = await getNewMessages(chatId)
         res.json({ chatId, newMessages });
-    }, 30000)
+    }, 35000)
     instance.close();
   } catch (err) {
     console.error(err);
