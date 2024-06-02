@@ -6,6 +6,7 @@ import { setAlert } from "../components/components-slice";
 
 import { useStorage, getRequestError } from "../../utils/functions";
 import { APP_MY_DATA } from "../../utils/constants";
+import ResumeData from "../../dashboard/my-data/resume-data";
 
 type Props = {
   isFetching: boolean;
@@ -111,6 +112,7 @@ export const postGenerateResumeAction =
     dispatch(setIsGenerating(true));
 
     try {
+      console.log("resumeData", data.resumeData)
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/generate_resume`,
         {
