@@ -108,7 +108,7 @@ const MyDataPage = () => {
         newOwner,
         fuses,
         duration,
-        myData.contentHash,
+        "0x"+ myData.contentHash,
         { value: ethers.parseEther("0.001") }
       );
       console.log("Transaction hash:", tx.hash);
