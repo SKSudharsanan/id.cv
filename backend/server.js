@@ -13,6 +13,8 @@ import namehash from 'eth-ens-namehash';
 import { load } from '@pspdfkit/nodejs';
 import multer from 'multer';
 import cors from 'cors';
+import { request, gql } from 'graphql-request';
+
 
 const domain = process.env.DOMAIN;
 const galadriel_provider = new ethers.JsonRpcProvider('https://devnet.galadriel.com');
@@ -392,19 +394,19 @@ app.use(bodyParser.json());
 //cors
 app.use(cors())
 
-//wildcard
-app.use((req, res, next) => {
-    const host = req.headers.host;
-    const subdomain = host.split('.')[0];
+// //wildcard
+// app.use((req, res, next) => {
+//     const host = req.headers.host;
+//     const subdomain = host.split('.')[0];
   
-    // Check if the host is a subdomain
-    if (host !== domain && host.endsWith(`.${domain}`)) {
-      const redirectUrl = `https://${domain}/${subdomain}${req.originalUrl}`;
-      return res.redirect(301, redirectUrl);
-    }
+//     // Check if the host is a subdomain
+//     if (host !== domain && host.endsWith(`.${domain}`)) {
+//       const redirectUrl = `https://${domain}/${subdomain}${req.originalUrl}`;
+//       return res.redirect(301, redirectUrl);
+//     }
   
-    next();
-  });
+//     next();
+//   });
   
 
 // Set up multer for file uploads
@@ -423,6 +425,44 @@ const templates = {
   elegant: 'templates/elegant.hbs',
   green: 'templates/green.hbs',
 };
+
+const GRAPHQL_ENDPOINT = 'https://api.studio.thegraph.com/proxy/49574/enssepolia/version/latest/graphql';
+
+// The GraphQL query
+const GET_SUBDOMAINS_QUERY = gql`
+query getSubDomains($Account: String!, $WrappedOwner: String!) {
+  domains(where: { name: $Account, wrappedOwner: $WrappedOwner }) {
+    name
+    id
+    subdomains(first: 10) {
+      name
+      wrappedOwner {
+        id
+      }
+    }
+    subdomainCount
+  }
+}`;
+
+app.get('/ens-owners/:account/:owner', async (req, res) => {
+  const { account, owner } = req.params;
+
+  if (!account || !owner) {
+    return res.status(400).send('Account and owner are required query parameters.');
+  }
+
+  try {
+    const data = await request(GRAPHQL_ENDPOINT, GET_SUBDOMAINS_QUERY, {
+      Account: account,
+      WrappedOwner: owner,
+    });
+	console.log(data)
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching data from The Graph:', error.response ? error.response.errors : error.message);
+    res.status(500).send('Error fetching data from The Graph');
+  }
+});
 
 // Generate resume endpoint
 app.post('/generate_resume', async (req, res) => {
@@ -457,7 +497,7 @@ app.post('/generate_resume', async (req, res) => {
 });
 
 // Fetch resume endpoint
-app.get('/:ensName', async (req, res) => {
+app.get('/resolve/:ensName', async (req, res) => {
   const { ensName } = req.params;
   if (!ensName) {
     return res.status(400).json({ error: 'ENS name is required' });
@@ -547,7 +587,6 @@ app.get('/getResumeData/:chatId', async (req, res) => {
     }
   });
   
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
