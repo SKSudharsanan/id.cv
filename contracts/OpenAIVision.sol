@@ -17,6 +17,9 @@ contract OpenAiChatGptVision {
     uint private chatRunsCount;
 
     event ChatCreated(address indexed owner, uint indexed chatId);
+    event ChatResponseUpdated(address indexed owner, uint indexed chatId);
+    event ChatResponseErrored(address indexed owner, uint indexed chatId);
+
 
     address private owner;
     address public oracleAddress;
@@ -34,7 +37,7 @@ contract OpenAiChatGptVision {
             model : "gpt-4-turbo",
             frequencyPenalty : 21, // > 20 for null
             logitBias : "", // empty str for null
-            maxTokens : 2000, // 0 for null
+            maxTokens : 4096, // 0 for null
             presencePenalty : 21, // > 20 for null
             responseFormat : "{\"type\":\"text\"}",
             seed : 0, // null
@@ -112,6 +115,7 @@ contract OpenAiChatGptVision {
             newMessage.content[0].value = errorMessage;
             run.messages.push(newMessage);
             run.messagesCount++;
+            emit ChatResponseErrored(owner, runId);
         } else {
             IOracle.Message memory newMessage = IOracle.Message({
                 role: "assistant",
@@ -121,6 +125,7 @@ contract OpenAiChatGptVision {
             newMessage.content[0].value = response.content;
             run.messages.push(newMessage);
             run.messagesCount++;
+            emit ChatResponseUpdated(owner, runId);
         }
     }
 

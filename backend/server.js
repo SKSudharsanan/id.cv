@@ -497,7 +497,7 @@ app.post('/get_resume_data', upload.single('pdf'), async (req, res) => {
     // Upload image to Lighthouse
     const uploadResponse = await lighthouse.upload(imagePath, process.env.LIGHTHOUSE_API_KEY);
     const galadriel_provider = new ethers.JsonRpcProvider('https://devnet.galadriel.com');
-    let galadriel_address = '0xE0717c3D864D82Ab062699ad87986944267d6Ce3';
+    let galadriel_address = '0x31DdAF7889966c7EeECb12f9a957f7d67Df2C5df';
     const wallet = new ethers.Wallet(process.env.ETH_PRIVATE_KEY, galadriel_provider);
     let abi = [
         'function startChat(string memory message, string[] memory imageUrls) public returns (uint i)',
